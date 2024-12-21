@@ -30,7 +30,8 @@ do {
         $total_leaves = ($i * 2) - 1;
         $leaves = "";
         for ($k = 1; $k <= $total_leaves; $k++) {
-            $leaves = $leaves . "*";
+            if (isEven($k)) {$leaves = $leaves . "o";}
+            else {$leaves = $leaves . "*";}
         }
         if ($height == 1) {$print_blanks = " ";} // Center trunk for outlier value : $height = 1
         echo $print_blanks . $leaves . PHP_EOL;
@@ -41,7 +42,12 @@ do {
         $blanks_trunk = $blanks_trunk . " ";
     }
     echo $blanks_trunk . "|||" . PHP_EOL;
+    echo PHP_EOL;
     echo "Do you want to print another Xmas tree? Press \"0\" to quit, any other key to CONTINUE  : ";
     $exit = trim(fgets(STDIN));
 } while ($exit != 0);
+
+function isEven (int $number) : bool {
+    return (($number & 1) === 0); // Usando === me aseguro que se trate de un número entero
+}
 ?>
